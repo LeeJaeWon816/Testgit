@@ -24,7 +24,7 @@
             Console.WriteLine(myShort);
             Console.WriteLine(myLong);
             Console.WriteLine(myByte);
-
+            
         }
     }
 }
