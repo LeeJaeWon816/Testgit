@@ -50,6 +50,7 @@
 
             Console.Write("군인인가요? (네/아니오) : ");
             string soldier = Console.ReadLine();
+            age = int.Parse(ageInput);
             if (soldier == "네")
             {
                 age = ;
