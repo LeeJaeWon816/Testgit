@@ -26,34 +26,64 @@
             // 연간 회원 인가요? (네/아니오) : 아니오
             // 무료 입장 입니다.
 
+            int adult = 10000; // 어른 요금
+            int youth = 8000; // 청소년 요금
+            int child = 5000; // 어린이 요금
+
             Console.Write("나이를 입력해주세요 : ");
             string ageInput = Console.ReadLine();
-            Console.Write("연간 회원 인가요? (네/아니오) : ");
-            string yuser = Console.ReadLine();
+            // int.Parse로 입력받은 나이 문자열을 숫자(정수) 데이터로 변환한다.]
             int age = int.Parse(ageInput);
-            if (age >= 4 && age <= 12)
+            Console.Write("연간 회원 인가요? (네/아니오) : ");
+            string packageinput = Console.ReadLine();
+            Console.Write("군인인가요? (네/아니오) : ");
+            string soldierinput = Console.ReadLine();
+
+            int pay = 0;
+            // 무료입장 조건
+            // 3세 이하 또는 65세 이상
+            if (age >= 65 || age <= 3)
             {
-                Console.WriteLine("어린이");
+                pay = 0;
             }
-            else if (age >= 13 && age <= 18)
-            {
-                Console.WriteLine("청소년");
-            }
+            // 성인 요금은 나이가 19세 이상 64세 이하일때 적용
             else if (age >= 19 && age <= 64)
             {
-                Console.WriteLine("성인");
+                pay = adult;
+            }
+            // 청소년 요금은 13세 이상 18세 이하일때 적용
+            else if (age >= 13 && age <= 18)
+            {
+                pay = youth;
+            }
+            // 이 위에 있는 if문에서 무료 입장 조건, 성인 입장 조건, 청소년 입장 조건을 다 처리해서
+            // 남은건 어린이 요금밖에 없기에 else문으로 해도 상관없다.
+            else
+            {
+                pay = child;
+            }
+            if (soldierinput == "네")
+            {
+                // 소수점 단위로 계산을 할 경우
+                // 정수형 데이터를 소수점 계산을 아예 못하기에 float로 데이터 타입으로 변환된다.
+                //           비용 = 70% 할인된 가격
+                pay = (int)(pay * 0.7f); 
+                // 6999.121234
+                // float temp = (pay * 0.7f);
+                // pay = (int)temp;
+            }
+            if (packageinput == "네")
+            {
+                pay = 0;
+            }
+
+            if (pay == 0)
+            {
+                Console.WriteLine("무료입장입니다.");
             }
             else
             {
-                Console.WriteLine("무료입장 입니다.");
-            }
-
-            Console.Write("군인인가요? (네/아니오) : ");
-            string soldier = Console.ReadLine();
-            age = int.Parse(ageInput);
-            if (soldier == "네")
-            {
-                age = ;
+                Console.WriteLine($"입장료는 {pay}원 입니다.");
             }
         }
     }
